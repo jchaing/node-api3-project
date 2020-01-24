@@ -15,12 +15,9 @@ router.post('/', validateUser, (req, res) => {
 });
 
 router.post('/:id/posts', (req, res) => {
-  // do your magic!
   const newPost = req.body;
   newPost.user_id = req.params.id;
 
-  // console.log("req.user.id", req.user.id);
-  // console.log('userid', userid);
   console.log(newPost);
 
   posts.insert(newPost)
@@ -33,31 +30,6 @@ router.post('/:id/posts', (req, res) => {
     });
 
 });
-
-// router.post('/:id/posts', (req, res) => {
-//   const id = req.params.id;
-//   const { text, user_id } = req.body;
-//   db.getById(id)
-//     .then(postId => {
-//       !postId.length
-//         ? posts
-//             .insert({ text: text, user_id: user_id })
-//             .then(() => {
-//               res.status(201).json({ message: req.body });
-//             })
-//             .catch(error => {
-//               console.log(error);
-//               res.status(500).json({ message: 'Error creating new post' });
-//             })
-//         : res.status(404).json({
-//             message: 'The user with the specified ID does not exist.'
-//           });
-//     })
-//     .catch(error => {
-//       console.log(error);
-//       res.status(500).json({ errorMessage: 'The post could not be saved.' });
-//     });
-// });
 
 router.get('/', (req, res) => {
   db.get()
