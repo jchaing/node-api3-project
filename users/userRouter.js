@@ -14,9 +14,9 @@ router.post('/', validateUser, (req, res) => {
     });
 });
 
-router.post('/:id/posts', (req, res) => {
+router.post('/:id/posts', validateUserId, validatePost, (req, res) => {
   const newPost = req.body;
-  newPost.user_id = req.params.id;
+  newPost.user_id = req.user.id;
 
   console.log(newPost);
 
